@@ -34,8 +34,8 @@ public class OrderServiceImpl implements OrderService
 
 
     @Override
-    @GlobalTransactional(name = "zzyy-create-order",rollbackFor = Exception.class) //AT
-    //@GlobalTransactional @Transactional(rollbackFor = Exception.class) //XA
+//    @GlobalTransactional(name = "zzyy-create-order",rollbackFor = Exception.class) //AT
+    @GlobalTransactional @Transactional(rollbackFor = Exception.class) //XA
     public void create(Order order) {
 
         //xid检查

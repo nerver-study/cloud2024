@@ -14,11 +14,11 @@ import tk.mybatis.spring.annotation.MapperScan;
 @EnableFeignClients
 @MapperScan("com.atguigu.cloud.mapper") //import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
-public class SeataAccountMainApp2002
+public class SeataStorageMainApp2002
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(SeataAccountMainApp2002.class,args);
+        SpringApplication.run(SeataStorageMainApp2002.class,args);
     }
 }
 

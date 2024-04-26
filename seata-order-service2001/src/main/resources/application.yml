@@ -35,7 +35,8 @@ seata:
   service:
     vgroup-mapping: # 点击源码分析
       default_tx_group: default # 事务组与TC服务集群的映射关系
-  data-source-proxy-mode: AT
+#  data-source-proxy-mode: AT
+  data-source-proxy-mode: XA
 
 logging:
   level:
