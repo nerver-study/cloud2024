@@ -29,6 +29,9 @@
         <module>seata-account-service2003</module>
         <module>acid-nine-noable</module>
         <module>snow</module>
+        <module>ilearning</module>
+        <module>letecode</module>
+        <module>niotest</module>
     </modules>
 
     <properties>

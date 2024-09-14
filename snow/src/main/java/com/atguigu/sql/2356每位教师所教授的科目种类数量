@@ -29,4 +29,14 @@ Teacher 表:在 SQL 中，(subject_id, dept_id) 是该表的主键。
   - 他在 1 系教科目 3。
   - 他在 1 系教科目 4。
 
+SELECT teacher_id, COUNT(DISTINCT subject_id ) AS cnt
+FROM Teacher
+GROUP BY teacher_id;
+
+
+SELECT teacher_id, COUNT(DISTINCT subject_id, dept_id ) AS cnt
+FROM Teacher
+GROUP BY teacher_id;
+
+
 
