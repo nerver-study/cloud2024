@@ -2,35 +2,32 @@ package com.atguigu.designmethods.single;
 
 public class InstructionReorderingExample {
 
-    //指令重排案例
-//    编译器可能会为了提高性能而调整代码的执行顺序。
-//    这种调整通常是安全的，但在多线程环境中可能会导致问题。
-
-    private int a = 0;
-    private boolean flag = false;
-
-    public void threadA() {
-        a = 1;
-        flag = true;
-    }
-
-    public void threadB() {
-        while (!flag) {
-            // 等待 flag 变为 true
-        }
-        System.out.println(a);
-    }
+    private static volatile    int x = 0, y = 0;
+    private static volatile  int a = 0, b = 0;
 
     public static void main(String[] args) throws InterruptedException {
-        InstructionReorderingExample example = new InstructionReorderingExample();
-        Thread thread1 = new Thread(() -> example.threadA());
-        Thread thread2 = new Thread(() -> example.threadB());
+        for (int i = 0; i < 10000; i++) {
+            x = 0; y = 0;
+            a = 0; b = 0;
 
-        thread1.start();
-        thread2.start();
+            Thread one = new Thread(() -> {
+                a = 1;  //语句1
+                y = b;  //语句2
+            });
 
-        thread1.join();
-        thread2.join();
+            Thread two = new Thread(() -> {
+                b = 1;  //语句3
+                x = a;  //语句4
+            });
+
+            one.start();
+            two.start();
+            one.join();
+            two.join();
+
+            if (x == 0 && y == 0) {
+                System.out.println("第 " + i + " 次发生了指令重排");
+            }
+        }
     }
 }
-
